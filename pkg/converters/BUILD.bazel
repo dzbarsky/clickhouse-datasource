@@ -1,0 +1,26 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "converters",
+    srcs = ["converters.go"],
+    importpath = "github.com/grafana/clickhouse-datasource/pkg/converters",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_grafana_grafana_plugin_sdk_go//data",
+        "@com_github_grafana_grafana_plugin_sdk_go//data/sqlutil",
+        "@com_github_paulmach_orb//:orb",
+        "@com_github_shopspring_decimal//:decimal",
+    ],
+)
+
+go_test(
+    name = "converters_test",
+    srcs = ["converters_test.go"],
+    deps = [
+        ":converters",
+        "@com_github_paulmach_orb//:orb",
+        "@com_github_shopspring_decimal//:decimal",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

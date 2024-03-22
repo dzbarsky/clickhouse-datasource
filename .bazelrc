@@ -1,0 +1,5 @@
+common --lockfile_mode=off
+common --sandbox_default_allow_network=false
+common --incompatible_strict_action_env
+
+startup --host_jvm_args=-DBAZEL_TRACK_SOURCE_DIRECTORIES=1

@@ -1,0 +1,22 @@
+load("@aspect_rules_webpack//webpack:defs.bzl", "webpack_bundle")
+load("@gazelle//:def.bzl", "gazelle")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+
+gazelle(name = "gazelle")
+
+npm_link_all_packages(name = "node_modules")
+
+webpack_bundle(
+    name = "bundle-v4",
+    srcs = glob([
+        "src/**/*.ts",
+        "src/**/*.tsx",
+    ]),
+    args = [
+        "--env",
+        "production",
+    ],
+    entry_point = "src/module.ts",
+    node_modules = "//:node_modules",
+    webpack_config = ".config/webpack/webpack.config.ts",
+)

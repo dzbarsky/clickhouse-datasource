@@ -1,0 +1,21 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "macros",
+    srcs = ["macros.go"],
+    importpath = "github.com/grafana/clickhouse-datasource/pkg/macros",
+    visibility = ["//visibility:public"],
+    deps = ["@com_github_grafana_sqlds_v2//:sqlds"],
+)
+
+go_test(
+    name = "macros_test",
+    srcs = ["macros_test.go"],
+    embed = [":macros"],
+    deps = [
+        "@com_github_grafana_grafana_plugin_sdk_go//backend",
+        "@com_github_grafana_sqlds_v2//:sqlds",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

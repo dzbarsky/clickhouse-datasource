@@ -36,3 +36,7 @@ provisioning
 
 **/.DS_Store
 .eslintcache
+/bazel-*
+
+.aspect
+pnpm-lock.yaml

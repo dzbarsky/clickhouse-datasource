@@ -1,0 +1,26 @@
+load("@aspect_rules_esbuild//esbuild:defs.bzl", "esbuild")
+
+esbuild(
+    name = "module",
+    srcs = glob([
+        "**/*.ts",
+        "**/*.tsx",
+    ]),
+    bazel_sandbox_plugin = False,
+    entry_point = "module.ts",
+    esbuild_log_level = "verbose",
+    js_log_level = "debug",
+    metafile = True,
+    config = {
+        "external": [
+            "@grafana/data",
+            "@grafana/runtime",
+            "@grafana/ui",
+            "react",
+            "rxjs",
+        ],
+    },
+    data = [
+        "//:node_modules",
+    ],
+)
